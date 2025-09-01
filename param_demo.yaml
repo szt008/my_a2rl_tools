@@ -1,0 +1,38 @@
+/eav24/motion_control_node:
+  ros__parameters:
+    braking_acc: -6.376500000000001
+    cool_down_acc: 3.27
+    cool_down_braking_acc: -3.27
+    cool_down_mu_scale: 0.8
+    cool_down_speed_limit: 30.0
+    degradation_lv1_speed_limit: 7.0
+    degradation_lv2_speed_limit: 20.0
+    degradation_lv3_speed_limit: 40.0
+    enable_bound_disp: false
+    estop_braking_acc: -9.81
+    frequency: 100.0
+    init_mission_type: racing_line
+    is_mu_update: false
+    is_silent_clock: true
+    map_topic: map_ar
+    obstacles_topic: perception/obstacles
+    pitlane_speed_limit: 5.0
+    qos_overrides:
+      /parameter_events:
+        publisher:
+          depth: 1000
+          durability: volatile
+          history: keep_last
+          reliability: reliable
+    race_control_timeout_degradation_lv1_threshold: 10.0
+    race_control_timeout_degradation_lv2_threshold: 5.0
+    race_control_timeout_soft_stop_threshold: 15.0
+    race_control_topic: race_control
+    safety_layer_topic: can/bsu_status_01
+    safety_margin: 2.4
+    safety_margin_lower_bound: 1.5
+    state_estimation_topic: state_estimation
+    traj_chunk_plus_PI_2: false
+    use_sim_time: false
+    warm_up_init_mu_scale: 0.8
+
