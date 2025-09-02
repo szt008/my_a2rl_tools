@@ -13,7 +13,8 @@
 定位（Localization）：
 /eav24/state_estimation_node
 
-规划（Planning）：
+规划（Planning）：make start-rc-local
+
 /eav24/eav24/graph_trajectory_rviz_node（轨迹可视化）
 /eav24/eav24/trajectory_chunk_extended_rviz_node
 /eav24/eav24/trajectoryv2rviz_node

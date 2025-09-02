@@ -1,79 +1,65 @@
-**ros2 param list**的terminal反馈：
-/eav24/diagnostic_monitor_node:
+/eav24/can_bus_handler_can0_v3_node:
+  can_backend
+  can_interface
   qos_overrides./parameter_events.publisher.depth
   qos_overrides./parameter_events.publisher.durability
   qos_overrides./parameter_events.publisher.history
   qos_overrides./parameter_events.publisher.reliability
   use_sim_time
-/eav24/eav24/graph_trajectory_rviz_node:
-  use_sim_time
-/eav24/map_ar_reader_node:
-  graph_map_ar
-  is_mu_reduction_zones_enabled
-  is_plot
-  is_rviz
-  is_save_map_ar
-  is_update_velocity_profile
-  path_map_ar
-  path_map_left
-  path_map_right
-  path_output_map_ar
-  use_sim_time
-/eav24/eav24/map_substrate_node:
-  use_sim_time
-/eav24/motion_control_node:
-  braking_acc
-  cool_down_acc
-  cool_down_braking_acc
-  cool_down_mu_scale
-  cool_down_speed_limit
-  degradation_lv1_speed_limit
-  degradation_lv2_speed_limit
-  degradation_lv3_speed_limit
-  enable_bound_disp
-  estop_braking_acc
-  frequency
-  init_mission_type
-  is_mu_update
-  is_silent_clock
-  map_topic
-  obstacles_topic
-  pitlane_speed_limit
+/eav24/can_bus_handler_can1_v2_node:
+  can_backend
+  can_interface
   qos_overrides./parameter_events.publisher.depth
   qos_overrides./parameter_events.publisher.durability
   qos_overrides./parameter_events.publisher.history
   qos_overrides./parameter_events.publisher.reliability
-  race_control_timeout_degradation_lv1_threshold
-  race_control_timeout_degradation_lv2_threshold
-  race_control_timeout_soft_stop_threshold
+  use_sim_time
+/eav24/can_bus_writer_v3_node:
+  brake_pressure_max
+  can_backend
+  can_interface
+  qos_overrides./parameter_events.publisher.depth
+  qos_overrides./parameter_events.publisher.durability
+  qos_overrides./parameter_events.publisher.history
+  qos_overrides./parameter_events.publisher.reliability
   race_control_topic
-  safety_layer_topic
-  safety_margin
-  safety_margin_lower_bound
-  state_estimation_topic
-  traj_chunk_plus_PI_2
-  use_sim_time
-  warm_up_init_mu_scale
-/eav24/perception_node:
-  enable_ground_truth
-  qos_overrides./parameter_events.publisher.depth
-  qos_overrides./parameter_events.publisher.durability
-  qos_overrides./parameter_events.publisher.history
-  qos_overrides./parameter_events.publisher.reliability
-  ref_alt0
-  ref_lat0
-  ref_lon0
   sample_time
   use_sim_time
-/eav24/prediction_node:
-  enable_csv_log
-  enable_planning_delay_compensation
-  planning_delay_sec
-  qos_overrides./parameter_events.publisher.depth
-  qos_overrides./parameter_events.publisher.durability
-  qos_overrides./parameter_events.publisher.history
-  qos_overrides./parameter_events.publisher.reliability
-  sample_time
+/eav24/lqr_control_node:
+  control_Cd0
+  control_Cd1
+  control_Cd2
+  control_Ct0
+  control_Ct1
+  control_Ct2
+  control_Ct3
+  control_R
+  control_brake2pressure
+  control_engine_map_mult
+  control_fdr
+  control_gear_ratios
+  control_kp_sx
+  control_kp_vx
+  control_kp_vx_max
+  control_lat_err_sat
+  control_m
+  control_max_brake
+  control_max_brake_rate
+  control_max_st_rate
+  control_max_steer
+  control_max_throttle
+  control_max_throttle_rate
+  control_pressure2torque
+  control_state_size
+  control_steer2actuator_rad
+  control_steer_ratio
+  dt
+  emergency_stop_brake
+  heading_err_max
+  input_timeout_sec
+  lat_e_max
+  safe_stop_brake
+  traj_preview_size
   use_sim_time
 /eav24/race_control_node:
   interactive_mode
@@ -81,16 +67,31 @@
   qos_overrides./parameter_events.publisher.durability
   qos_overrides./parameter_events.publisher.history
   qos_overrides./parameter_events.publisher.reliability
+  udp_port
   use_sim_time
   work_mode
-/eav24/eav24/right_boundary_rviz_node:
+/eav24/rb_planner_node2:
+  input_timeout_sec
+  lat0
+  lon0
+  opponent_timeout_sec
+  recording_path
+  traj_path
   use_sim_time
-/eav24/rviz2:
+  x_offset
+  y_offset
+/remote_control_node:
+  joy_overwrite_max_throttle
+  joy_overwrite_standby_brake
+  keyboard_overwrite_max_brake
+  keyboard_overwrite_max_throttle
   qos_overrides./parameter_events.publisher.depth
   qos_overrides./parameter_events.publisher.durability
   qos_overrides./parameter_events.publisher.history
   qos_overrides./parameter_events.publisher.reliability
-  tf_buffer_cache_time_ms
+  remote_control_mode
+  server_ip
+  server_port
   use_sim_time
 /eav24/state_estimation_node:
   attitude0
@@ -223,7 +224,33 @@
   qos_overrides./parameter_events.publisher.reliability
   race_control_topic
   use_sim_time
-/eav24/eav24/trajectory_chunk_extended_rviz_node:
-  use_sim_time
-/eav24/eav24/trajectoryv2rviz_node:
+/eav24/trajserver_node:
+  dt
+  enable_gg_learner
+  enable_grip_estimation
+  input_timeout_sec
+  lap_based_mult
+  p2p_always_active
+  p2p_index
+  pit_speed
+  traj_acc_max_lat
+  traj_ax_max
+  traj_combined_coef
+  traj_corner_idx
+  traj_dec_max
+  traj_fixed_section
+  traj_gg_acc_mult
+  traj_gg_dec_mult
+  traj_gg_mult
+  traj_ggv
+  traj_ggv_acc
+  traj_ggv_dec
+  traj_max_errors
+  traj_preview_size_ds
+  traj_preview_size_dt
+  traj_time_adv_ax
+  traj_time_adv_vec
+  traj_time_adv_vx
+  traj_time_adv_vx_vec
+  trajectory_paths
   use_sim_time
