@@ -1,0 +1,13 @@
+/eav24/lqr_control_node:
+  ros__parameters:
+    control_Cd0: 1.65
+    control_Cd1: 0.0
+    control_Cd2: 0.001
+    control_kp_sx: 0.5
+    control_kp_vx: 1.0
+/eav24/trajserver_node:
+  ros__parameters:
+    pit_speed: 15.0
+    traj_acc_max_lat: 14.2
+    traj_ax_max: 10.0
+    enable_gg_learner: false
