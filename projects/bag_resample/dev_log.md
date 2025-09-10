@@ -37,3 +37,9 @@ for RL:
     
     
 综合以上内容，可以先将所有内容resample后，进行post-extract获得RL、IL、Envelope Generation需要的数据
+
+GUI设计
+需要集成的功能：
+topic rqt rqt_graph
+rosbag_record rosbag_info rosbag_replay
+run_resample_node
