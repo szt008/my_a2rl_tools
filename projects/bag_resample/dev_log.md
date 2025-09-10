@@ -43,3 +43,5 @@ GUI设计
 topic rqt rqt_graph
 rosbag_record rosbag_info rosbag_replay
 run_resample_node
+
+接下来开发 resample_node，信息可以一站式参考CarTel msg采集数据的代码
