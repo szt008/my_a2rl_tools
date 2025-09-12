@@ -45,3 +45,17 @@ rosbag_record rosbag_info rosbag_replay
 run_resample_node
 
 接下来开发 resample_node，信息可以一站式参考CarTel msg采集数据的代码
+
+20250912
+以下commit cherry pick后再提交
+commit 7b3a60a8f17f75393cde02936ecc89d2e192a4fb (HEAD -> dev/dynparam_automan_logo, origin/dev/dynparam_automan_logo)
+Author: szt008 <66050801@qq.com>
+Date:   Fri Sep 12 14:29:26 2025 +0400
+
+    Automan logo cutouot and add logo to dynparam window
+
+以下命令可以快速将配置文件更新，可以加到GNUmakefile中
+param:
+	cp -r src/ads_launch/param/* install/ads_launch/share/ads_launch/param/
+
+计划是先resample node提交一次，再ros tool提交一次

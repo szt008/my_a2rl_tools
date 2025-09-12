@@ -78,9 +78,10 @@ class RosbagGUI(QDialog):
         self.btn_play.clicked.connect(self.run_play_rosbag)
         btn_row2.addWidget(self.btn_play)
 
-        self.btn_play = QPushButton('N/A') # to add run_resample_node
-        self.btn_play.setStyleSheet(na_style)
-        btn_row2.addWidget(self.btn_play)
+        self.btn_resample_node = QPushButton('Run Resample Node') # to add run_resample_node
+        self.btn_resample_node.setStyleSheet(btn_style + f'background-color:{color_dict['bag_analysis']}; color:black;')
+        self.btn_resample_node.clicked.connect(self.run_resample_node)
+        btn_row2.addWidget(self.btn_resample_node)
 
         self.btn_play = QPushButton('N/A')
         self.btn_play.setStyleSheet(na_style)
@@ -155,6 +156,9 @@ class RosbagGUI(QDialog):
 
     def run_play_rosbag(self):
         self.run_script('play_rosbag', extra_info=self.path_input.text())
+
+    def run_resample_node(self):
+        self.run_script('start_resample_node', extra_info=self.path_input.text())
 
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal.SIG_DFL)

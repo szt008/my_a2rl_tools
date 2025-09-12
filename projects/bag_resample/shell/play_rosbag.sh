@@ -6,12 +6,7 @@ BAG_DIR="$1"
 BAG_DURATION=$(ros2 bag info "$BAG_DIR" | grep '^Duration:' | awk '{print $2}')
 
 # 记录回放开始结束时间
-START_TIME=$(date +%s)
-ros2 bag play "$BAG_DIR" -r 5
-END_TIME=$(date +%s)
-
-ELAPSED=$((END_TIME - START_TIME))
+gnome-terminal -- bash -c "ros2 bag play "$BAG_DIR" -r 5; exec bash"
 
 echo -e " "
 echo -e "Bag duration: $BAG_DURATION"
-# echo -e "Playback elapsed time: $ELAPSED s"
