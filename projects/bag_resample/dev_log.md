@@ -59,3 +59,60 @@ param:
 	cp -r src/ads_launch/param/* install/ads_launch/share/ads_launch/param/
 
 计划是先resample node提交一次，再ros tool提交一次
+
+两个更新内容：
+1.Ali代码关于msg type的更新
+
+import sys, time, numpy as np, os
+from typing import Set
+from PyQt5.QtWidgets import (
+    QDialog, QMainWindow, QDockWidget, QWidget, QVBoxLayout, QLabel,
+    QHBoxLayout, QAction, QFormLayout, QSpinBox, QPushButton, QTableWidget,
+    QTableWidgetItem, QHeaderView, QCheckBox, QMessageBox
+)
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject, QTimer
+from PyQt5.QtGui import QPixmap
+
+# Import DataHandler from the actual module
+try:
+    from ..data_handler import DataHandler
+except ImportError:
+    # Add parent directory to path for standalone execution
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+    from data_handler import DataHandler
+
+
+按钮模板
+class TelemPanel(QDialog):
+    _instance = None  # 用于存储单例实例
+
+    def __init__(self):
+        super().__init__()
+        self.data_handler = DataHandler()
+
+        # 设置窗口标题和大小
+        self.setWindowTitle("Telemetry Panel")
+        self.setGeometry(100, 100, 400, 300)
+
+        # 创建主布局
+        layout = QVBoxLayout()
+
+        # 添加其他控件（如果有）
+        # ...
+
+        # 添加图片到布局的下方
+        self.image_label = QLabel(self)
+        pixmap = QPixmap("src/car_gui/car_gui/lib/automan_lab.png")
+        self.image_label.setPixmap(pixmap)
+        self.image_label.setAlignment(Qt.AlignCenter)  # 图片居中显示
+        layout.addWidget(self.image_label)
+
+        # 设置主布局
+        self.setLayout(layout)
+
+    @classmethod
+    def open_dialog(cls):
+        """ Shows Telemetry Panel"""
+        if cls._instance is None or not cls._instance.isVisible():
+            cls._instance = cls()
+        cls._instance.show()

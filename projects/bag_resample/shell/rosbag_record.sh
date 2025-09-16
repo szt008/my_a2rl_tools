@@ -1,6 +1,3 @@
-source /opt/ros/humble/setup.sh
-source ~/A2RL/kinetiz-a2rl/install/setup.bash
-
 # 读取命令行参数作为存储文件名
 BAG_PATH="$1"
 if [ -z "$BAG_PATH" ]; then
