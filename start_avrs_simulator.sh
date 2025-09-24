@@ -7,7 +7,9 @@ else
 	cd "$HOME/A2RL/autoverse/autoverse-linux/Linux"
 fi
 
-./Autoverse.sh
+# ./Autoverse.sh
+
+./Autoverse.sh -ResX=640 -ResY=640 -WINDOWED
 
 # 注意ROS_DOMAIN_ID的设置，系统与仿真保持一致
 # 仿真器修改"/autoverse-linux/Linux/Autoverse/Saved/Objects/Eav24_default.json"
