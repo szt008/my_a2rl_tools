@@ -26,3 +26,5 @@ avrs vehicle-replay despawn --all
 6. 移动本车位置，应该是TP开头的命令
  avrs teleport --yaw 270 --frame ned 961 505 -26.9
  在YasmarinaNorth中使用以上命令可以将车放置在VDA位置。
+
+   avrs teleport --yaw 0 --frame ned 560 1089 -26.9
