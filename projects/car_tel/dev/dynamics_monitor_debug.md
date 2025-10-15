@@ -1,0 +1,2 @@
+car distributed gui 变为car_tel仅发送给main_gui，再通过main_gui转发给distributed_gui
+Correct the tyre state vis 去掉了椭圆边界变化，使用数值表示载荷变化

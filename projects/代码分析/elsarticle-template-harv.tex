@@ -1,0 +1,454 @@
+%% 
+%% Copyright 2007-2020 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times,authoryear]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{amsfonts}
+\usepackage{makecell}
+\usepackage{newtxmath}
+\usepackage{bm}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\DeclareMathOperator{\minimize}{min}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+%% \usepackage{lineno}
+
+\journal{Transportation Research Part C: Emerging Technologies}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+\title{Epistemic-Aware Hybrid Decision-Making and Safety Integration for Autonomous Vehicles in Dangerous Scenarios}
+
+%% use optional labels to link authors explicitly to addresses:
+\author[label1,label2]{Zitong Shan}
+\author[label1]{Jian Zhao}
+\author[label3]{Jingda Wu}
+\author[label1]{Yang Zhao\corref{cor1}}
+\ead{yang\_zhao@jlu.edu.cn}
+\author[label1]{Zijian Cai}
+\author[label1]{Yufei Zhang}
+\author[label1]{Hongyu Hu}
+\author[label2]{Chen Lv}
+\author[label1]{Bing Zhu}
+\cortext[cor1]{Corresponding author}
+
+\affiliation[label1]{organization={National Key Laboratory of Automotive Chassis Integration and Bionics},
+            addressline={Jilin University},
+            city={Changchun},
+            postcode={130022},
+            country={China}}
+
+\affiliation[label2]{organization={School of Mechanical and Aerospace Engineering},
+            addressline={Nanyang Technological University},
+            city={Singapore},
+            postcode={639798},
+            country={Singapore}}
+
+\affiliation[label3]{organization={School of Automotive Engineering},
+            addressline={Hubei University of Automotive Technology},
+            city={Shiyan},
+            postcode={442002},
+            country={China}}
+
+\begin{abstract}
+% 指出挑战
+Ensuring safe and reliable decision-making in autonomous vehicles remains a critical challenge in safety-critical scenarios, particularly when facing long-tail events and data distribution shifts. In such situations, high epistemic uncertainty in neural network-based decision models can significantly degrade performance and threaten driving safety. 
+% 概括方法
+This study proposes an Epistemic-Risk-Aware Safety Integration (EASI) framework that dynamically coordinates learning-based and rule-based decision modules with a multi-level safety backup. Epistemic risk is quantified in real time via a deep ensemble value network, where the variance across multiple value estimators serves as an uncertainty metric. A decision-switching mechanism is then designed to replace the learning-based output with a rule-based decision when the estimated epistemic risk exceeds a scenario-dependent threshold or when the learned policy is outperformed by the rule-based decision.
+In parallel, an autonomous emergency maneuvering (AEM) module is integrated combining longitudinal braking and lateral evasive actions to maximize vehicle dynamic capability in pre-collision situations.
+% 测试验证
+The proposed EASI framework is trained and evaluated respectively in SMARTS and SUMO–CARLA simulation environment, and further validated using full-scale vehicle experiments.
+% 如果后面有的话在这里加定量结论
+The results confirm that proposed method can substantially improve the robustness and safety of autonomous driving in complex and safety-critical environments.
+
+\end{abstract}
+
+\begin{keyword}
+autonomous driving, epistemic risk, hybrid decision-making, safety-critical, multi-level redundancy
+\end{keyword}
+
+%%Graphical abstract
+\begin{graphicalabstract}
+%\includegraphics{grabs}
+\includegraphics[width=\linewidth]{F1.eps}
+\end{graphicalabstract}
+
+%%Research highlights
+\begin{highlights}
+% \item A unified deep imitative reinforcement learning framework for autonomous vehicle decision-making is proposed. Most existing learning methods with expert priors towards decision-making can be included in this framework.
+
+% \item The proposed learning method leverages both demonstration and interaction data, synchronously employing imitation learning and reinforcement learning methods for updates. 
+% They combine to form four update mechanisms, synergistically training the agent.
+
+% \item We proposed a method to quantitatively observe gradient conflicts during the learning process of autonomous driving decision-making agents.
+
+% \item A gradient projection technique aiming to achieve gradient conflict-free updates was developed. 
+% This approach breaks through the learning stagnation caused by gradient conflicts, ultimately achieving decision-making agents with better performance.
+
+% \item The proposed method was evaluated on the real autonomous vehicle in virtual traffic flow. The sim-to-real challenge commonly faced by learning-based decision-making methods was preliminarily overcome in this work.
+
+\end{highlights}
+
+\end{frontmatter}
+
+%% \linenumbers
+%% Start Introduction
+\section{Introduction}
+\label{Section1}
+
+Autonomous driving technologies frequently face the challenge of the long-tail problem in complex and dynamic traffic environments. In particular, data-driven decision-making approaches are sensitive to the distribution of training data. The scarcity of corner-case scenarios prevents agents from effectively learning strategies to cope with such low-frequency events, leading to significant performance degradation when encountering extreme or previously unseen conditions. These limitations pose critical challenges to the driving safety and reliability of autonomous vehicles in safety-critical scenarios.
+
+The epistemic risk of autonomous driving systems typically arises from the complexity and uncertainty of traffic environments. A single decision-making model is often insufficient to cope with all possible conditions, particularly in safety-critical scenarios with high epistemic risk. To address this limitation, researchers have increasingly adopted hybrid decision-making frameworks as an effective solution. By integrating rule-based models with learning-based models, the complementary strengths of both can be exploited: rule-based models are well suited to handling structured and predictable situations, while learning-based models can extract complex patterns from historical data and adapt to dynamic and unforeseen environments. In addition, autonomous driving systems incorporate safety backup mechanisms to further ensure driving safety. Through the combination of multiple decision-making modules, the system can enhance its robustness, adaptability, and decision-making capability across diverse traffic scenarios.
+
+This paper is organized as follows: Section \ref{sec2} outlines related works. The conflict-free deep imitative reinforcement learning (CoFe-DIRL) is proposed in Section \ref{sec3}. 
+Section \ref{sec4} offers the simulation validation. 
+Section \ref{sec5} introduced the augmented reality experiment. 
+Finally, Section \ref{sec6} concludes the paper with prospects. 
+
+%% start related works
+\section{Preliminaries}
+\label{sec2}
+
+%% start methods
+\section{Epistemic-Aware Hybrid Decision and Multi-Level Safety Integration Safety Integration}
+\label{sec3}
+
+\subsection{Epistemic Risk Quantification and Epistemic-Aware Decision}
+
+To address the challenges posed by the long-tail problem and data distribution shift, this study first introduces a risk quantification mechanism that explicitly models epistemic uncertainty. A deep ensemble of value networks is employed to capture epistemic uncertainty through the variance of action-value estimates. This uncertainty is then mapped into an epistemic risk, which normalizes uncertainty into a bounded range and enables adaptive thresholding.
+
+Building on this risk representation, the proposed framework integrates a Q-filter mechanism to evaluate the relative quality of actions. By comparing the value estimates of the learning-based policy and alternative decisions, the system identifies whether the reinforcement learning agent is capable of producing reliable behavior in the current scenario. When epistemic risk exceeds a predefined threshold or the Q-filter indicates inferior performance, the framework dynamically switches away from the learning-based policy to safer alternatives. This enables the decision-making module to remain robust under high-risk conditions while preserving flexibility in low-risk scenarios.
+
+\subsubsection{Epistemic Uncertainty for Autonomous Driving}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.5\linewidth]{F_epistemic_uncertainty.png}
+\caption{Illustration of Epistemic Uncertainty in Neural Network Models}
+\label{F_epistemic_uncertainty}
+\end{figure}
+
+The uncertainty of neural network models generally consists of aleatoric uncertainty and epistemic uncertainty. Aleatoric uncertainty refers to the uncertainty caused by inherent noise or randomness in the data. It originates from the unpredictability of the input data, reflecting the intrinsic randomness of the data or process, and cannot be eliminated through the model’s learning process. Epistemic uncertainty, on the other hand, arises from factors inherent to the neural network model itself, including model parameters, architectural design, and insufficient or inaccurate training data. Such uncertainty emerges because machine learning models are trained on limited data, thereby lacking prior knowledge necessary for certain tasks. An intuitive illustration of epistemic uncertainty can be found in Fig. \ref{F_epistemic_uncertainty}. In regions where data distribution is dense, neural network models converge accurately; whereas in regions with sparse data distribution, convergence to valid solutions becomes difficult. Understanding and quantifying epistemic uncertainty is essential for improving the robustness and reliability of autonomous driving decision-making systems
+
+The long-tail problem refers to the phenomenon in which an autonomous driving system, although capable of handling a large number of common and moderately complex scenarios during training, exhibits a significant decline in performance when confronted with rare, extreme, or highly complex scenarios. The long-tail problem is therefore a major source of epistemic risk for autonomous driving decision-making models.
+
+In addition, data shift is another major factor that exposes autonomous driving decision-making models to epistemic risk. Data shift refers to the distributional changes or inconsistencies between the training data and the test environment. Prediction and decision models in autonomous driving are typically trained and tested on fixed datasets, whereas in deployment they must cope with constantly evolving environments. Variations in traffic density, differences in interaction strategies among road users, regional traffic regulations, and changes in road conditions can all lead to discrepancies between training dataset and real traffic condition, thereby creating epistemic safety challenges during deployment. Consequently, data shift may adversely affect the model’s performance, increasing the uncertainty and risk of prediction and decision-making.
+
+When artificial intelligence methods are applied more extensively to autonomous driving systems, epistemic uncertainty inevitably arises from data scarcity, which in turn leads to epistemic risk. If an autonomous vehicle makes erroneous or reckless decisions during operation, it may directly jeopardize passenger safety. Therefore, mitigating epistemic risk in autonomous driving decision-making is of critical importance, and the foremost task lies in the quantitative estimation of scenario-specific epistemic risk.
+
+% 这里最好加上epistemic risk的定义
+
+\subsubsection{Deep Ensemble for Epistemic Risk Quantification}
+
+In autonomous driving decision-making and planning, considering the potential epistemic uncertainty of models is critical to improving safety and reliability. Epistemic uncertainty reflects the extent to which the model understands a given scenario. By quantifying epistemic uncertainty, scenarios can be categorized into low-risk and high-risk cases, enabling autonomous systems to adopt more conservative strategies under high-risk conditions and thereby reduce potential dangers.
+
+Based on the principles of Bayesian deep learning, epistemic uncertainty can be modeled by imposing prior distributions over network weights and estimating their variations conditioned on observed data. This approach theoretically provides a principled characterization of the predictive confidence of the model. To approximate Bayesian inference in practice, researchers have employed techniques such as deep ensembles and Monte Carlo dropout. Empirical evidence indicates that deep ensembles outperform alternative uncertainty quantification methods in terms of estimation accuracy and robustness, while also exhibiting superior computational efficiency.
+
+This study employs a real-time epistemic uncertainty estimation approach based on deep ensembles, whereby the predictions of multiple network models are integrated to dynamically quantify scenario understanding within the autonomous driving decision-making module. To enable real-time uncertainty estimation, a value-network ensemble model, as illustrated in Fig. \ref{F_ensamble_model}, is constructed.
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.8\linewidth]{F_ensamble_model.png}
+\caption{Illustration of Epistemic Uncertainty in Neural Network Models}
+\label{F_ensamble_model}
+\end{figure}
+
+The ensemble model consists of $M$ value networks, with the parameters of the $i$-th network denoted as $\theta_i \ (i=1,\dots,M)$. All networks are initialized with randomized parameters to ensure diversity. The ensemble is capable of jointly estimating both the state–action value and the epistemic uncertainty. To mitigate the overestimation problem of the value function caused by bootstrapping, the minimum output among the ensemble members is adopted as the estimate of the state–action value, which is then used for value network updates. The estimation of the state–action value is formulated as:
+\begin{equation}
+Q(s,a) = \min_{i \in \{1,\dots,M\}} Q_{\theta_i}(s,a),
+\label{eq4_1}
+\end{equation}
+where $Q_{\theta_i}(s,a)$ denotes the estimated value function of the $i$-th network.
+
+The epistemic uncertainty is quantified by the variance of the current state–action value estimates across the ensemble networks. After applying Bessel’s correction, the unbiased estimation of epistemic uncertainty is expressed as:
+\begin{equation}
+\hat{U}_{e}(s,a) = \frac{1}{M-1} \sum_{i=1}^{M} 
+\left(Q_{\theta_i}(s,a) - \bar{Q}(s,a)\right)^2,
+\label{eq4_2}
+\end{equation}
+with the ensemble mean value given by:
+\begin{equation}
+\bar{Q}(s,a) = \frac{1}{M} \sum_{i=1}^{M} Q_{\theta_i}(s,a).
+\label{eq4_3}
+\end{equation}
+
+\subsubsection{Q-Value-Based Valuation of Action Quality}
+
+In deep reinforcement learning, value networks leverage the Chebyshev theorem to approximate the state–action value function $Q(s,a)$ through iterative sampling. The state–action value represents the expected cumulative discounted return when taking action $a$ under state $s$, and thus serves as a quantitative metric to evaluate the quality of an action. 
+
+Let the action proposed by the policy network under state $s$ be denoted as $a_{\phi}$, while the rule-based decision output is denoted as $a_{r}$. For the ensemble of value networks, the minimum output among the ensemble members is employed as the estimate of the state–action value in order to alleviate overestimation bias. Accordingly, the evaluation criterion for comparing the two candidate actions is defined as:
+\begin{equation}
+\min_{i \in \{1,\dots,M\}} Q_{\theta_i}(s,a_{r}) 
+\ > \ \min_{i \in \{1,\dots,M\}} Q_{\theta_i}(s,a_{\phi}),
+\label{eq4_11}
+\end{equation}
+where $Q_{\theta_i}$ denotes the $i$-th value network in the ensemble. When Eq. (\ref{eq4_11}) is satisfied, it indicates that the rule-based decision $a_{r}$ is superior to the policy network’s output $a_{\pi}$ for the current state $s$.
+
+\subsubsection{Epistemic-Aware Decision Switching Mechanism}
+% 这里可以引入一个函数，将硬切换机制变为软切换机制
+
+In edge-case scenarios, the data distribution is often sparse, leading to insufficient samples for adequately training the value networks. Such data scarcity may result in high epistemic uncertainty when evaluating actions, and these scenarios are referred to as high epistemic risk cases. In this study, an ensemble model is employed to extract epistemic uncertainty. By applying an exponential mapping, the epistemic uncertainty $U_e(s,a_\phi)$ can be transformed from the interval $[0, \infty)$ to the normalized range $[0,1]$, yielding a quantitative measure of epistemic risk: 
+\begin{equation}
+R_e(s,a_\phi) = 1 - \exp\left(-\lambda_S \, U_e(s,a_\phi)\right),
+\label{eq4_12}
+\end{equation}
+where $\lambda_s$ denotes the sensitivity factor that controls the responsiveness of the epistemic risk to changes in epistemic uncertainty. A smaller $\lambda_s$ leads to a smoother response, while a larger $\lambda_s$ implies that the epistemic risk grows sharply as uncertainty increases.
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.8\linewidth]{F_dynamic_threshold.png}
+\caption{Epistemic Risk Distribution and Threshold}
+\label{F_dynamic_threshold}
+\end{figure}
+
+Based on the epistemic risk, it can be determined whether to adopt the value network’s assessment of action quality. When the following inequality holds, the current scenario is regarded as a high epistemic risk case:
+\begin{equation}
+R_e(s,a) > \text{TH}_\text{ER},
+\label{eq4_8}
+\end{equation}
+where $\text{TH}_\text{ER}$ denotes the epistemic risk threshold, which is selected according to the epistemic risk distribution, as shown in Fig. \ref{F_dynamic_threshold}. 
+Assume that epistemic risk follows the distribution function $F_\text{ER}(\cdot)$, 
+and the risk threshold $\mathrm{TH}_\mathrm{ER}$ is specified by the following condition:
+\begin{equation}
+\int_{\mathrm{TH}_\mathrm{ER}}^{1} F_{\mathrm{ER}}\left(r_{e}\right) \mathrm{d} r_{e}=\tau
+\label{eq4_9}
+\end{equation}
+where $r_e$ denotes the random variable of cognitive risk, representing its actual value during system operation; $\tau$ is the threshold scaling factor, which is used to adjust the magnitude of the cognitive risk threshold.
+
+In the Actor–Critic architecture of reinforcement learning, the policy network update depends on the accurate value function estimation provided by the value network. Therefore, under high epistemic risk, the value network may fail to reliably assess the quality of driving behaviors, which in turn undermines the decision-making capability of the policy network. In such cases, relying solely on the learning-based decision maker cannot fully guarantee system safety, and a safety-assurance mechanism is required to mitigate potential risks.
+
+By dynamically switching between the rule-based and neural network decision outputs according to the uncertainty threshold and the difference in action values, the autonomous driving system can adopt more conservative strategies under high epistemic risk, thereby improving overall safety. Consequently, the hybrid decision output that accounts for scenario cognition is defined as:
+\begin{equation}
+a_e = 
+\begin{cases}
+a_{r}, & \text{if } \text{ER}(s,a) > \tau \ \wedge \ \min_{i} Q_{\theta_i}(s,a_{r}) > \min_{i} Q_{\theta_i}(s,a_{\phi}), \\[6pt]
+a_{\phi}, & \text{otherwise},
+\end{cases}
+\label{eq4_10}
+\end{equation}
+where $a_{r}$ denotes the rule-based decision, $a_{\pi}$ the policy network output, and $\tau$ the epistemic risk threshold.
+
+
+
+
+\subsection{Epistemic-Aware Safety Integration}
+
+
+
+\subsubsection{Multi-mode redundancy}
+
+Autonomous driving systems typically incorporate three distinct types of decision-making modules: rule-based decision-makers, machine learning-based decision-makers, and safety backup modules. Each module assumes a different functional role, and the relative weight of their decision outputs dynamically adapts to the real-time driving scenario and system state.
+
+Rule-based decision-makers are characterized by high determinism and clear logic, and early autonomous driving systems primarily relied on such methods to generate behavioral decisions through predefined switching conditions or optimization objectives.
+With the rapid advancement of artificial intelligence, machine learning-based decision-makers have been progressively introduced to overcome the inherent limitations of rule-based approaches. As the learning capability of intelligent agents improves, machine learning-based decision-makers have undertaken an increasing share of planning tasks, while the contribution of rule-based decision-makers has gradually declined, reflecting a smooth transition from rule-based to neural network-based decision-making paradigms.
+Despite the growing dominance of neural network agents, the long-tail problem continues to hinder their ability to cover all driving scenarios. To ensure safety, autonomous driving systems are also equipped with safety backup modules, such as autonomous emergency braking. Serving as the final safeguard, the safety backup module is activated only under emergency conditions and thus maintains a consistently low output share, which is expected to further decrease as autonomous driving technologies advance.
+
+While risk-aware decision switching enhances decision robustness, safety in autonomous driving requires a multi-level redundancy mechanism. The Epistemic-Aware Safety Integration (EASI) architecture is introduced to coordinate rule-based decision making, learning-based decision outputs, and safety backup mechanisms.
+
+First, a rule-based baseline derived from the well-established IDM-MOBIL framework is incorporated to handle structured and predictable traffic scenarios. These rule-based outputs serve as a reliable fallback when the learning-based policy becomes uncertain.
+Second, an Autonomous Emergency Maneuvering (AEM) module is introduced as the last safety layer. By evaluating the Responsibility-Sensitive Safety (RSS) potential field, the AEM module computes the optimal avoidance direction and executes maneuvers with the maximum available vehicle dynamics capability.
+
+EASI provides a unified safety-aware coordination strategy, ensuring that:
+
+\begin{itemize}
+    \item The learning-based policy is prioritized in low-risk conditions.
+    \item The rule-based decision is adopted when epistemic risk rises above the threshold.
+    \item The safety backup is triggered when imminent collision risks are detected.
+\end{itemize}
+
+\subsubsection{Rule-based baseline: IDM-MOBIL}
+
+Rule-based decision-making for autonomous driving relies on predefined rules and logical structures to guide vehicle behavior. The core idea is to construct a manually designed rule base, which, combined with the current environmental perception and vehicle state, generates driving decisions. Rule-based approaches are simple and highly interpretable, making it suitable for structured scenarios. However, its flexibility and scalability are limited when confronted with complex and dynamic environments.
+
+In this study, the IDM-MOBIL model, which has been widely applied in autonomous driving and traffic simulation, is adopted as the rule-based decision-making method. This model integrates the longitudinal Intelligent Driver Model (IDM) and the lateral Minimizing Overall Braking Induced by Lane Changes (MOBIL) framework to jointly handle car-following and lane-changing decisions.
+
+The IDM model requires the specification of parameters such as the minimum safe distance at standstill $s_0$, driver reaction time (or desired time headway) $T$, maximum acceleration $a_{\max}$, and comfortable deceleration $b$. Based on the ego vehicle’s longitudinal speed $v$ and the preceding vehicle’s speed $v_{\text{lead}}$, the desired dynamic safe distance is defined as:
+\begin{equation}
+s^{*}(v, \Delta v) = s_0 + vT + \frac{v \, \Delta v}{2\sqrt{a_{\max} b}}, 
+\label{eq4_4}
+\end{equation}
+where $\Delta v = v - v_{\text{front}}$ represents the relative speed.
+
+Given the traffic speed limit $v_0$, the desired velocity is obtained accordingly. The acceleration of the ego vehicle is then dynamically adjusted as a function of the desired safe distance $s^{*}$, the ego speed $v$, and the actual spacing $s$ to the leading vehicle:
+\begin{equation}
+\dot{v} = a_{\max} \left[ 1 - \left(\frac{v}{v_0}\right)^{\delta} - 
+\left(\frac{s^{*}(v, \Delta v)}{s}\right)^{2} \right],
+\label{eq4_5}
+\end{equation}
+where $\delta$ denotes the acceleration exponent, typically set to $4$ in standard IDM implementations.
+
+The MOBIL model builds upon the IDM framework to evaluate the impact of lane-changing behavior on the ego vehicle, the following vehicle in the current lane, and the following vehicle in the target lane. The decision criterion is based on assessing the acceleration changes induced by a potential lane change and selecting the action that maximizes the overall benefit while ensuring safety constraints.
+
+Specifically, the MOBIL model computes the weighted sum of the accelerations of the ego vehicle ($a_{\text{ego}}$), the current lane follower ($a_{\text{fol}}$), and the target lane follower ($a_{\text{tar}}$) under different lane-change options. The incentive criterion is expressed as:
+\begin{equation}
+\Delta a = a_{\text{ego}}^{\text{new}} - a_{\text{ego}}^{\text{old}} 
++ p \left[ \left(a_{\text{fol}}^{\text{new}} - a_{\text{fol}}^{\text{old}}\right) 
++ \left(a_{\text{tar}}^{\text{new}} - a_{\text{tar}}^{\text{old}}\right) \right],
+\label{eq4_6}
+\end{equation}
+where $p \in [0,1]$ is a weighting factor reflecting the consideration of surrounding vehicles. 
+
+In practice, a lane change is required to satisfy the incentive and safety criteria given in Eqs. \ref{eq4_5_2}, and maximize the acceleration benefit among all feasible maneuvers. Formally, the selected maneuver $m^{*}$ is determined as:
+
+\begin{equation}
+m^{*} = \arg \max_{m \in \mathcal{M}} \ \Delta a(m),
+\label{eq4_5_1}
+\end{equation}
+subject to
+\begin{equation}
+\Delta a(m) > \Delta a_{\text{th}}, \quad 
+a_{\text{tar}}^{\text{new}}(m) \geq -b_{\text{safe}},
+\label{eq4_5_2}
+\end{equation}
+where $\mathcal{M}$ denotes the set of candidate maneuvers (e.g., lane-keeping, left lane change, right lane change, or turning at intersections). 
+
+Thus, the MOBIL model outputs the maneuver that achieves the largest acceleration gain while ensuring safety, thereby providing a rational rule-based mechanism for both highway and urban driving scenarios.
+
+\subsubsection{Autonomous Emergency Maneuvering Safety Backup}
+
+In real-world traffic environments, complex external factors together with sensor performance limitations often lead to considerable uncertainty of scenario understanding. This uncertainty can affect both perception and decision-making outputs. However, as the vehicle moves closer to the obstacle, the accuracy of sensor perception improves significantly, providing a more reliable basis for system judgment. Based on this characteristic, executing decisive and rapid emergency maneuvers in close-range situations becomes an essential strategy for avoiding most accidents. Therefore, most autonomous vehicles are equipped with the safety backup mechanism.
+
+The safety backup mechanism can bypass the high-level layers, directly controlling vehicle actions to mitigate potential risks. When the system detects a high-risk situation, the safety backup module can intervene promptly to reduces the risk of collision and maximizes occupant protection. The autonomous emergency braking (AEB) module primarily prevents collisions through longitudinal braking, whereas the autonomous emergency steering (AES) module enhances safety by executing lateral maneuvers. To enhance the safety and resilience of autonomous vehicles in complex traffic scenarios, this paper proposes an coupled safety backup mechanism, autonomous emergency maneuvering (AEM), which combines both longitudinal and lateral motions. When the collision risk exceeds a predefined threshold, the AEM mechanism coordinates steering and deceleration actions to fully exploit the vehicle’s dynamic capabilities, thereby enabling efficient obstacle avoidance.
+
+%还要简单介绍一下包络
+%这里应该增加一段RSSI的简要介绍
+
+When the intensity of the safety potential field exceeds the predefined threshold, as Eq. \ref{eq4_11}, the AEM safety backup is activated.
+\begin{equation}
+\text{RSSI}(c_\text{ego})>\text{TH}_\text{SR}
+\label{eq4_11}
+\end{equation}
+The pose of the ego vehicle can be donated as $(x, y, \psi)$. The sampled poses can be obtained through the following equation:
+\begin{equation}
+\begin{array}{l}
+x_{\mathrm{ego}}^{\vartheta}=x_{\mathrm{ego}}+\cos \left(\psi_{\mathrm{ego}}+\vartheta\right) \mathrm{d} s \\
+y_{\mathrm{ego}}^{\vartheta}=y_{\mathrm{ego}}+\sin \left(\psi_{\mathrm{ego}}+\vartheta\right) \mathrm{d} s
+\end{array}
+\label{eq4_12}
+\end{equation}
+where $\vartheta \in [-\pi, \pi)$ is the sampling direction. And the direction that minimizes the safety potential field intensity can be expressed as:
+\begin{equation}
+\vartheta^*=\underset{\vartheta}{\operatorname{argmin}} \operatorname{RSSI}\left(c_{\text {ego }}^{\vartheta}\right)
+\label{eq4_13}
+\end{equation}
+
+
+\subsubsection{Epistemic-Aware Safety Integration Architecture}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.8\linewidth]{F_EASI.png}
+\caption{Epistemic Risk Distribution and Threshold}
+\label{F_EASI}
+\end{figure}
+
+This paper proposes an Epistemic-Aware Safety Integration (EASI) architecture, as illustrated in Fig. \ref{F_EASI}, to dynamically coordinate the roles of different decision-making modules in autonomous driving systems and thereby achieve multi-level redundancy in decision-making. The architecture is designed to enhance safety and robustness in high-risk scenarios by combining quantitative assessment of epistemic risk and state–action value estimation, integrating model-based and rule-based decisions, and incorporating a Responsibility-Sensitive Safety (RSS)-based emergency maneuver backup mechanism.
+
+Within the deep reinforcement learning framework, the value network approximates the state–action value function through sampling, serving to evaluate the candidate actions. However, in data-sparse corner cases, the value network may fail due to elevated epistemic uncertainty. By leveraging deep ensemble models to extract epistemic uncertainty, EASI enables dynamic epistemic risk assessment of driving scenarios and reliability evaluation of machine learning decision-makers. When epistemic risk becomes excessive, or when the action quality estimated by the learning-based module falls below that of the rule-based decision, the system automatically switches to rule-based decision-making, thereby safeguarding decision reliability and preventing unpredictable behaviors.
+
+Furthermore, when the scenario safety risk exceeds the predefined threshold, the autonomous emergency maneuver module is activated to mitigate potential hazards through coordinated longitudinal deceleration and lateral evasive actions. The proposed architecture thus enables dynamic collaboration among the learning-based decision-maker, the rule-based behavioral planner, and the safety backup module, establishing a multi-layered protective mechanism. 
+This integrated framework  substantially enhances the safety of autonomous driving systems and improves the robustness and reliability facing complex environments.
+
+%% start simulation
+\section{Simulation validation}
+\label{sec4}
+
+%% start full-scale vehicle test
+\section{Augmented reality experiment validation}
+\label{sec5}
+
+%% start conclusion
+\section{Conclusion}
+\label{sec6}
+
+\section*{CRediT authorship contribution statement}
+
+\textbf{Zitong Shan}: Conceptualization, method formulation, experimental validation, and paper writing.
+\textbf{Jian Zhao}: Supervision and review.
+\textbf{Jingda Wu}: Conceptual discussions, technical support in reinforcement learning and software of the AR experiment, and review.
+\textbf{Yang Zhao}: Conceptualization, data curation, design of validation in the simulation and experiment, and funding acquisition.
+\textbf{Linhe Ge}: Construction of the control module and CAN communication.
+\textbf{Shouren Zhong}: Construction of the hardware platform and Ethernet communication for the AR experiment.
+\textbf{Zijian Cai}: Construction of the control module and CAN communication.
+\textbf{Hongyu Hu}: Conceptual discussions, Construction of the autonomous vehicle, technical support for the chassis-by-wire, and review.
+\textbf{Chen Lv}: Determining the framework, refining the innovation points, and review.
+\textbf{Bing Zhu}: Guidance on the research direction and review.
+
+\section*{Declaration of competing interest}
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to 
+influence the work reported in this paper.
+
+% \section*{Data availability}
+% Data will be made available on requset.
+
+\section*{Acknowledgments}
+This work was funded by National Natural Science Foundation of China (Grant No. 52372354) and National Natural Science Foundation of China (Grant No. 52394261).
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+%% \appendix
+
+%% \section{}
+%% \label{}
+
+%% If you have bibdatabase file and want bibtex to generate the
+%% bibitems, please use
+%%
+\bibliographystyle{elsarticle-harv} 
+\bibliography{references}
+\end{document}
+
+\endinput
+%%
+%% End of file `elsarticle-template-harv.tex'.
